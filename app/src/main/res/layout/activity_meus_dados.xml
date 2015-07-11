@@ -1,0 +1,97 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="help.home.com.br.homehelp.MeusDadosActivity"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_nome"
+                android:id="@+id/textView4" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text="@string/label_nome"
+                android:ems="10"
+                android:id="@+id/editNome" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_email"
+                android:id="@+id/textView5" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/editEmail" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_login"
+                android:id="@+id/textView6" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editLogin" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_senha"
+                android:id="@+id/textView7" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberPassword"
+                android:ems="10"
+                android:id="@+id/editSenha" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_senha_confirma"
+                android:id="@+id/textView8" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberPassword"
+                android:ems="10"
+                android:id="@+id/editSenhaConfirma" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_presta_servico"
+                android:id="@+id/checkPrestaServico"
+                android:onClick="onCheckPrestaServico"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
+
+
