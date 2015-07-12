@@ -1,7 +1,9 @@
 package help.home.com.br.homehelp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,7 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class PerfilFragment extends Fragment {
@@ -40,9 +44,19 @@ public class PerfilFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
 
+        this.setUserCabecalho(view);
+
         this.openLstMeusDados(view);
 
         this.openLstMais(view);
+
+        Button btnLogon = (Button)view.findViewById(R.id.btnLogon);
+        btnLogon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logon();
+            }
+        });
 
         return view;
     }
@@ -99,6 +113,28 @@ public class PerfilFragment extends Fragment {
             }
         });
 
+    }
+
+    public void setUserCabecalho(View view){
+        SharedPreferences pref = getActivity().getSharedPreferences("HomeHelpPref", Context.MODE_PRIVATE);
+        String userNome = pref.getString("key_user_nome", "");
+
+        TextView textUserPerfil = (TextView) view.findViewById(R.id.textUserPerfil);
+        textUserPerfil.setText(userNome);
+    }
+
+    public void logon(){
+        SharedPreferences pref = getActivity().getSharedPreferences("HomeHelpPref", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("key_user_id", null);
+        editor.putString("key_user", null);
+        editor.putString("key_user_email", null);
+        editor.putString("key_user_nome", null);
+        editor.putString("key_user_prestador", null);
+        editor.commit();
+
+        Intent r = new Intent(getActivity(), MainActivity.class);
+        startActivity(r);
     }
 
     @Override

@@ -1,7 +1,9 @@
 package help.home.com.br.homehelp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -35,11 +37,11 @@ public class ClassificacaoFragment extends Fragment {
 
     private ClassificacaoDTO classificacaoSel;
 
-    EditText editRecomendacao;
+    private EditText editRecomendacao;
 
-    Spinner spinnerNota;
+    private Spinner spinnerNota;
 
-    String nota;
+    private String nota;
 
     /**
      * Returns a new instance of this fragment for the given section
@@ -66,10 +68,16 @@ public class ClassificacaoFragment extends Fragment {
     }
 
     public void listarClassificacoes(View rootView){
-        ChamadoREST rest = new ChamadoREST();
+        SharedPreferences pref = getActivity().getSharedPreferences("HomeHelpPref", Context.MODE_PRIVATE);
+        String user = pref.getString("key_user_id", "");
+
+        Log.i(TAG, user);
+
         try {
-            classificacoes = rest.listarClassificacoes(1L); //TODO remover o valor fixo - USUARIO LOGADO
+            ChamadoREST rest = new ChamadoREST();
+            classificacoes = rest.listarClassificacoes(Long.valueOf(user));
         }catch (Exception e){
+            e.printStackTrace();
         }
 
         if(classificacoes!=null){
@@ -145,8 +153,8 @@ public class ClassificacaoFragment extends Fragment {
     }
 
     public void classificar(){
-        ChamadoREST rest = new ChamadoREST();
         try {
+            ChamadoREST rest = new ChamadoREST();
             rest.classificar(nota, editRecomendacao.getText().toString(), classificacaoSel.getChamadoId());
         }catch (Exception e){
         }

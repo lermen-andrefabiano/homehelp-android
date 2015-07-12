@@ -1,5 +1,6 @@
 package help.home.com.br.homehelp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
@@ -22,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -94,6 +96,8 @@ public class NavigationDrawerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
 
+       setUserCabecalho(view);
+
         mDrawerListView = (ListView) view.findViewById(R.id.navigationItems);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -113,6 +117,14 @@ public class NavigationDrawerFragment extends Fragment {
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return view;
+    }
+
+    public void setUserCabecalho(View view){
+        SharedPreferences pref = getActivity().getSharedPreferences("HomeHelpPref", Context.MODE_PRIVATE);
+        String userNome = pref.getString("key_user_nome", "");
+
+        TextView txtUser = (TextView) view.findViewById(R.id.txtUser);
+        txtUser.setText(userNome);
     }
 
     public boolean isDrawerOpen() {

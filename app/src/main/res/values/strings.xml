@@ -45,17 +45,25 @@
     <string name="label_nota">Nota</string>
     <string name="label_recomendacao">Recomendação</string>
     <string name="label_classificar">Classificar</string>
+    <string name="label_boa_vindas">Seja bem vindo ao Home Help</string>
+    <string name="label_boa_vindas_pessoas">Encontre pessoas que façam serviços</string>
+    <string name="label_criar_conta">Criar minha conta Home Help</string>
+    <string name="label_ja_sou_cadastrado">Já sou cadastrado</string>
 
     <string name="title_activity_perfil">Perfil</string>
     <string name="title_activity_meus_dados">Meus Dados</string>
     <string name="title_activity_redefinir_senha">Redefinir Senha</string>
     <string name="title_activity_lembrete_senha">Esqueci minha senha</string>
+    <string name="title_activity_boas_vindas">Boas Vindas ao Home Help</string>
+    <string name="title_activity_login">Login</string>
 
     <string name="toast_chamado_descriao">Informe a descrição</string>
     <string name="toast_chamado_aberto">Chamado aberto!</string>
     <string name="toast_classificacao_recomendacao">Informe a recomendação!</string>
     <string name="toast_classificacao_aberta">Classificação realizada com sucesso!</string>
     <string name="toast_agendamento_realizado">Agendamento realizado com sucesso!</string>
+    <string name="toast_senhas_vazias">Informe as senhas</string>
+    <string name="toast_senhas_diferrentes">As senhas não são iguais</string>
 
     <string-array name="prioridade_array">
         <item>Normal</item>
@@ -104,6 +112,7 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 
 

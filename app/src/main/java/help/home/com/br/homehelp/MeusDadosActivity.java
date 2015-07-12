@@ -3,6 +3,8 @@ package help.home.com.br.homehelp;
 
 
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
@@ -11,16 +13,45 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Toast;
+
+import help.home.com.br.homehelp.webservices.rest.UsuarioREST;
+import help.home.com.br.homehelp.webservices.rest.dto.LoginDTO;
 
 public class MeusDadosActivity extends ActionBarActivity{
 
     private static final String TAG = "MeusDadosActivity";
 
+    private SharedPreferences pref;
+
+    private EditText editNome;
+
+    private EditText editEmail;
+
+    private EditText editLogin;
+
+    private EditText editSenha;
+
+    private EditText editConfirmaSenha;
+
+    private CheckBox chkPrestaServico;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meus_dados);
+
+        editNome = (EditText)findViewById(R.id.editNome);
+        editEmail = (EditText)findViewById(R.id.editEmail);
+        editLogin = (EditText)findViewById(R.id.editLogin);
+        editSenha = (EditText)findViewById(R.id.editSenha);
+        editConfirmaSenha = (EditText)findViewById(R.id.editSenhaConfirma);
+        chkPrestaServico = (CheckBox)findViewById(R.id.chkPrestaServico);
+
+        pref = getApplicationContext().getSharedPreferences("HomeHelpPref", MODE_PRIVATE);
+
+        meusDados();
     }
 
     @Override
@@ -42,6 +73,9 @@ public class MeusDadosActivity extends ActionBarActivity{
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_save) {
+            if(isValidaSenha()){
+                criar();
+            }
             return true;
         }
 
@@ -54,13 +88,73 @@ public class MeusDadosActivity extends ActionBarActivity{
 
         // Check which checkbox was clicked
         switch(view.getId()) {
-            case R.id.checkPrestaServico:
+            case R.id.chkPrestaServico:
                 if (checked){
                     showNoticeDialog();
                 }else{
 
                 }
                 break;
+        }
+    }
+
+    public void meusDados(){
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("HomeHelpPref", MODE_PRIVATE);
+        String user = pref.getString("key_user", "");
+
+        if(user!=null){
+            editNome.setText(pref.getString("key_user_nome", ""));
+            editEmail.setText(pref.getString("key_user_email", ""));
+            editLogin.setText(user);
+            chkPrestaServico.setChecked(Boolean.valueOf(pref.getString("key_user_prestador", "")));
+        }
+    }
+    public boolean isValidaSenha(){
+        String senha = editSenha.getText().toString();
+        String confirmaSenha = editConfirmaSenha.getText().toString();
+
+        if(senha.equals("") || confirmaSenha.equals("")){
+            Toast.makeText(getApplicationContext(), R.string.toast_senhas_vazias, Toast.LENGTH_SHORT).show();
+            return false;
+        }else  if(!senha.equals(confirmaSenha)){
+            Toast.makeText(getApplicationContext(), R.string.toast_senhas_diferrentes, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
+
+    public void criar(){
+        LoginDTO retorno= null;
+        String keyUserId = pref.getString("key_user_id", null);
+        Long userId = keyUserId!=null ? Long.valueOf(keyUserId) : null;
+
+        try {
+            UsuarioREST rest = new UsuarioREST();
+            retorno = rest.criar(userId,
+                    editNome.getText().toString(),
+                    editEmail.getText().toString(),
+                    editLogin.getText().toString(),
+                    editSenha.getText().toString(),
+                    chkPrestaServico.isChecked());
+        }catch (Exception e){
+        }
+
+        abreMain(retorno);
+    }
+
+    public void abreMain(LoginDTO retorno){
+        if(retorno!=null && retorno.getLogin()!=null){
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putString("key_user_id", retorno.getId().toString());
+            editor.putString("key_user", retorno.getLogin());
+            editor.putString("key_user_email", retorno.getEmail());
+            editor.putString("key_user_nome", retorno.getNome());
+            editor.putString("key_user_prestador", retorno.getPrestaServico().toString());
+            editor.commit();
+
+            Intent r = new Intent(this, MainActivity.class);
+            startActivity(r);
         }
     }
 

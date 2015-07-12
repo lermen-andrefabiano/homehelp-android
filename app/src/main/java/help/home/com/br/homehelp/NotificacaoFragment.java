@@ -1,7 +1,9 @@
 package help.home.com.br.homehelp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -39,9 +41,9 @@ public class NotificacaoFragment extends Fragment {
 
     private StringBuilder agendamento = new StringBuilder("");;
 
-    DatePicker dateAgendamento;
+    private DatePicker dateAgendamento;
 
-    TimePicker timeAgendaemnto;
+    private TimePicker timeAgendaemnto;
 
     /**
      * Returns a new instance of this fragment for the given section
@@ -67,10 +69,14 @@ public class NotificacaoFragment extends Fragment {
     }
 
     public void listarChamados(View rootView){
-        ChamadoREST rest = new ChamadoREST();
+        SharedPreferences pref = getActivity().getSharedPreferences("HomeHelpPref", Context.MODE_PRIVATE);
+        String user = pref.getString("key_user_id", "");
+
         try {
-            chamadosAbertos = rest.listarChamadosAbertos(2L); //TODO remover o valor fixo - USUARIO LOGADO
+            ChamadoREST rest = new ChamadoREST();
+            chamadosAbertos = rest.listarChamadosAbertos(Long.valueOf(user));
         }catch (Exception e){
+            e.printStackTrace();
         }
 
         if(chamadosAbertos!=null){
@@ -144,8 +150,8 @@ public class NotificacaoFragment extends Fragment {
     }
 
     public void agendar(){
-        ChamadoREST rest = new ChamadoREST();
         try {
+            ChamadoREST rest = new ChamadoREST();
             rest.notificar(chamadoSel.getId(), agendamento.toString(), editObservacao.getText().toString());
         }catch (Exception e){
         }

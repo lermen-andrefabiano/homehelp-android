@@ -1,7 +1,9 @@
 package help.home.com.br.homehelp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
@@ -197,14 +199,19 @@ public class ChamadoFragment extends Fragment {
     }
 
     public void abrirChamado(){
-        ChamadoREST rest = new ChamadoREST();
+        SharedPreferences pref = getActivity().getSharedPreferences("HomeHelpPref", Context.MODE_PRIVATE);
+        String user = pref.getString("key_user_id", "");
+
         try {
+            ChamadoREST rest = new ChamadoREST();
             rest.abrir(editObservacao.getText().toString(),
                     editDecricao.getText().toString(),
-                    prioridade, 1L, // TODO NAO ESQUEÇER DE MUDAR - USUARIO LOGADO
+                    prioridade,
+                    Long.valueOf(user),
                     usuarioEspecialidadeSel.getUsuario().getId(),
                     usuarioEspecialidadeSel.getEspecialidade().getId());
         }catch (Exception e){
+            e.printStackTrace();
         }
         Toast.makeText(getActivity(), R.string.toast_chamado_aberto, Toast.LENGTH_SHORT).show();
     }
