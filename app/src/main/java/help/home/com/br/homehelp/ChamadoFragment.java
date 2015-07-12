@@ -26,6 +26,7 @@ import android.widget.Toast;
 import java.util.List;
 
 
+import help.home.com.br.homehelp.adapter.ChamadoAdapter;
 import help.home.com.br.homehelp.webservices.rest.ChamadoREST;
 import help.home.com.br.homehelp.webservices.rest.EspecialidadeREST;
 import help.home.com.br.homehelp.webservices.rest.dto.UsuarioEspecialidadeDTO;
@@ -117,19 +118,13 @@ public class ChamadoFragment extends Fragment {
 
         ListView listPrestadores = (ListView) view.findViewById(R.id.listPrestadores);
 
-        ArrayAdapter<UsuarioEspecialidadeDTO> adapter = new ArrayAdapter<UsuarioEspecialidadeDTO>(getActivity(),
-                android.R.layout.simple_list_item_1,
-                android.R.id.text1,
-                listaPrestadoresEspecialidade);
+        ChamadoAdapter adapter = new ChamadoAdapter(getActivity(), R.layout.fragment_chamado_item, listaPrestadoresEspecialidade);
 
         listPrestadores.setAdapter(adapter);
         listPrestadores.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 usuarioEspecialidadeSel = (UsuarioEspecialidadeDTO)parent.getItemAtPosition(position);
-                Log.i(TAG, usuarioEspecialidadeSel.getEspecialidade().getId().toString());
-                Log.i(TAG, usuarioEspecialidadeSel.getUsuario().getNome());
-                Log.i(TAG, usuarioEspecialidadeSel.getValorCobrado().toString());
                 abrirPopUpChamado();
             }
         });

@@ -49,6 +49,7 @@
     <string name="label_boa_vindas_pessoas">Encontre pessoas que façam serviços</string>
     <string name="label_criar_conta">Criar minha conta Home Help</string>
     <string name="label_ja_sou_cadastrado">Já sou cadastrado</string>
+    <string name="label_valor_dinheiro">R$</string>
 
     <string name="title_activity_perfil">Perfil</string>
     <string name="title_activity_meus_dados">Meus Dados</string>

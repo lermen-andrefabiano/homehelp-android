@@ -12,7 +12,7 @@ public class UsuarioEspecialidadeDTO {
 
 	@Override
 	public String toString() {
-		return usuario!=null ? usuario.getNome() : null;
+		return usuario.getNome();
 	}
 
 	public Long getId() {

@@ -11,17 +11,17 @@ import android.widget.TextView;
 import java.util.List;
 
 import help.home.com.br.homehelp.R;
-import help.home.com.br.homehelp.webservices.rest.dto.ClassificacaoDTO;
+import help.home.com.br.homehelp.webservices.rest.dto.UsuarioEspecialidadeDTO;
 
 /**
  * Created by Andre on 09/07/2015.
  */
-public class ClassificacaoAdapter extends ArrayAdapter<ClassificacaoDTO> {
+public class ChamadoAdapter extends ArrayAdapter<UsuarioEspecialidadeDTO> {
 
     int resource;
 
     //Initialize adapter
-    public ClassificacaoAdapter(Context context, int resource, List<ClassificacaoDTO> items) {
+    public ChamadoAdapter(Context context, int resource, List<UsuarioEspecialidadeDTO> items) {
         super(context, resource, items);
         this.resource = resource;
     }
@@ -30,7 +30,7 @@ public class ClassificacaoAdapter extends ArrayAdapter<ClassificacaoDTO> {
     public View getView(int position, View convertView, ViewGroup parent){
         LinearLayout view;
         //Get the current alert object
-        ClassificacaoDTO c = getItem(position);
+        UsuarioEspecialidadeDTO u = getItem(position);
 
         //Inflate the view
         if(convertView==null){
@@ -43,16 +43,14 @@ public class ClassificacaoAdapter extends ArrayAdapter<ClassificacaoDTO> {
             view = (LinearLayout) convertView;
         }
         //Get the text boxes from the listitem.xml file
-        TextView textDescricao =(TextView)view.findViewById(R.id.textDescricao);
-        TextView textPrestador =(TextView)view.findViewById(R.id.textPrestador);
+        TextView textValor =(TextView)view.findViewById(R.id.textValor);
         TextView textEspecialidade =(TextView)view.findViewById(R.id.textEspecialidade);
-        TextView textAgendamento =(TextView)view.findViewById(R.id.textAgendamento);
+        TextView textPrestador =(TextView)view.findViewById(R.id.textPrestador);
 
-        //Assign the appropriate data from our alert object above
-        textDescricao.setText(c.getDescricao());
-        textPrestador.setText(c.getPrestador());
-        textEspecialidade.setText(c.getEspecialidade());
-        textAgendamento.setText(c.getAgendamento());
+        String valorCobrado = getContext().getString(R.string.label_valor_dinheiro) + " " + u.getValorCobrado().toString();
+        textValor.setText(valorCobrado);
+        textEspecialidade.setText(u.getEspecialidade().getDescricao());
+        textPrestador.setText(u.getUsuario().getNome());
 
         return view;
     }

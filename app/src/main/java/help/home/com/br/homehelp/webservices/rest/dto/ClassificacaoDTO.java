@@ -10,10 +10,12 @@ public class ClassificacaoDTO {
 
 	private String prestador;
 
+	private String agendamento;
+
 	public Long getChamadoId() {
 		return chamadoId;
 	}
-	
+
 	public void setChamadoId(Long chamadoId) {
 		this.chamadoId = chamadoId;
 	}
@@ -40,6 +42,14 @@ public class ClassificacaoDTO {
 
 	public void setPrestador(String prestador) {
 		this.prestador = prestador;
+	}
+
+	public String getAgendamento() {
+		return agendamento;
+	}
+
+	public void setAgendamento(String agendamento) {
+		this.agendamento = agendamento;
 	}
 
 }
