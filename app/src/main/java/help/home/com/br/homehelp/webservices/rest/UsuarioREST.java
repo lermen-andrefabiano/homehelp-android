@@ -62,7 +62,7 @@ public class UsuarioREST extends AbstractREST{
         return info;
     }
 
-    public LoginDTO criar(Long userId, String nome, String email, String login, String senha, Boolean prestaServico) throws Exception {
+    public LoginDTO criar(Long userId, String nome, String email, String login, String senha, String endereco, Boolean prestaServico) throws Exception {
         final String PATH_CRIAR = "criar";
 
         Log.i("URL_WS", URL_WS + PATH + PATH_CRIAR);
@@ -72,6 +72,7 @@ public class UsuarioREST extends AbstractREST{
         info.setId(userId);
         info.setNome(nome);
         info.setEmail(email);
+        info.setEndereco(endereco);
         info.setLogin(login);
         info.setSenha(senha);
         info.setPrestaServico(prestaServico);

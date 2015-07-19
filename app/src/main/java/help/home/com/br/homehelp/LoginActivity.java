@@ -73,6 +73,7 @@ public class LoginActivity extends ActionBarActivity {
             editor.putString("key_user", retorno.getLogin());
             editor.putString("key_user_email", retorno.getEmail());
             editor.putString("key_user_nome", retorno.getNome());
+            editor.putString("key_user_endereco", retorno.getEndereco());
             editor.putString("key_user_prestador", retorno.getPrestaServico().toString());
             editor.commit();
 

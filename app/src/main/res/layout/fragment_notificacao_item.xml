@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:padding="10dp">
 
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -21,14 +20,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New Text"
-                android:id="@+id/textPrioridade"
+                android:id="@+id/textData"
                 android:layout_marginRight="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New Text"
-                android:id="@+id/textData" />
+                android:id="@+id/textUsuario"
+                android:layout_marginRight="10dp" />
 
         </LinearLayout>
 
@@ -41,13 +41,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New Text"
-                android:id="@+id/textDescricao" />
+                android:id="@+id/textEndereco" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New Text"
-                android:id="@+id/textObservacao" />
+                android:id="@+id/textDescricao" />
 
             <TextView
                 android:layout_width="wrap_content"

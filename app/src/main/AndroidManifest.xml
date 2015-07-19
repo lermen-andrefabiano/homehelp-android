@@ -25,26 +25,34 @@
         <activity
             android:name=".MeusDadosActivity"
             android:label="@string/title_activity_meus_dados"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MeusDadosActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".MeusDadosActivity" />
         </activity>
         <activity
             android:name=".RedefinirSenhaActivity"
             android:label="@string/title_activity_redefinir_senha"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MeusDadosActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".MeusDadosActivity" />
         </activity>
         <activity
             android:name=".LembreteSenhaActivity"
             android:label="@string/title_activity_lembrete_senha"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MeusDadosActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".MeusDadosActivity" />
+        </activity>
+        <activity
+            android:name=".MeusDadosEspecialidadeActivity"
+            android:label="@string/title_activity_meus_dados_especialidade"
+            android:parentActivityName=".MeusDadosActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MeusDadosActivity" />
         </activity>
         <activity
             android:name=".BoasVindasActivity"

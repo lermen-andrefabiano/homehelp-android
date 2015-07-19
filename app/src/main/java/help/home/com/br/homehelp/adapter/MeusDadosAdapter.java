@@ -1,27 +1,30 @@
 package help.home.com.br.homehelp.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
 
 import help.home.com.br.homehelp.R;
-import help.home.com.br.homehelp.webservices.rest.dto.ChamadoDTO;
+import help.home.com.br.homehelp.webservices.rest.EspecialidadeREST;
+import help.home.com.br.homehelp.webservices.rest.dto.UsuarioEspecialidadeDTO;
 
 /**
  * Created by Andre on 09/07/2015.
  */
-public class NotificacaoAdapter extends ArrayAdapter<ChamadoDTO> {
+public class MeusDadosAdapter extends ArrayAdapter<UsuarioEspecialidadeDTO> {
 
     int resource;
 
     //Initialize adapter
-    public NotificacaoAdapter(Context context, int resource, List<ChamadoDTO> items) {
+    public MeusDadosAdapter(Context context, int resource, List<UsuarioEspecialidadeDTO> items) {
         super(context, resource, items);
         this.resource = resource;
     }
@@ -30,7 +33,7 @@ public class NotificacaoAdapter extends ArrayAdapter<ChamadoDTO> {
     public View getView(int position, View convertView, ViewGroup parent){
         LinearLayout view;
         //Get the current alert object
-        ChamadoDTO c = getItem(position);
+        final UsuarioEspecialidadeDTO u = getItem(position);
 
         //Inflate the view
         if(convertView==null){
@@ -42,20 +45,23 @@ public class NotificacaoAdapter extends ArrayAdapter<ChamadoDTO> {
         }else{
             view = (LinearLayout) convertView;
         }
+        //Get the text boxes from the listitem.xml file
+        TextView edtEspecialidade =(TextView)view.findViewById(R.id.edtEspecialidade);
+        ImageView imgExcluir =(ImageView)view.findViewById(R.id.imgExcluir);
 
-        if(c!=null){
-            TextView textData =(TextView)view.findViewById(R.id.textData);
-            TextView textUsuario =(TextView)view.findViewById(R.id.textUsuario);
-            TextView textEndereco =(TextView)view.findViewById(R.id.textEndereco);
-            TextView textDescricao =(TextView)view.findViewById(R.id.textDescricao);
-            TextView textEspecialidade =(TextView)view.findViewById(R.id.textEspecialidade);
+        edtEspecialidade.setText(u.getEspecialidade().getDescricao());
 
-            textData.setText(c.getData());
-            textUsuario.setText(c.getUsuario());
-            textEndereco.setText(c.getEndereco());
-            textDescricao.setText(c.getDescricao());
-            textEspecialidade.setText(c.getEspecialidade());
-        }
+        imgExcluir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    EspecialidadeREST rest = new EspecialidadeREST();
+                    rest.excluir(u.getId());
+                }catch (Exception e){
+                }
+            }
+        });
+
 
         return view;
     }

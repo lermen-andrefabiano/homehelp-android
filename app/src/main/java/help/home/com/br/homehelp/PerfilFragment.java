@@ -24,6 +24,8 @@ public class PerfilFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
+    private SharedPreferences pref;
+
     public static PerfilFragment newInstance(int sectionNumber) {
         PerfilFragment fragment = new PerfilFragment();
         Bundle args = new Bundle();
@@ -62,8 +64,6 @@ public class PerfilFragment extends Fragment {
     }
 
     private void openLstMeusDados(View view){
-        Log.i(TAG, "openLstMeusDados");
-
         ListView lstMeusDados = (ListView) view.findViewById(R.id.lstMeusDados);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
@@ -71,21 +71,28 @@ public class PerfilFragment extends Fragment {
                 android.R.id.text1,
                 new String[]{
                         getString(R.string.label_dados_pessoais),
+                        getString(R.string.label_especialidades),
                 });
 
         lstMeusDados.setAdapter(adapter);
         lstMeusDados.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(getActivity(), MeusDadosActivity.class);
-                startActivity(i);
+                switch (position) {
+                    case 0:
+                        Intent i = new Intent(getActivity(), MeusDadosActivity.class);
+                        startActivity(i);
+                        break;
+                    case 1:
+                        Intent m = new Intent(getActivity(), MeusDadosEspecialidadeActivity.class);
+                        startActivity(m);
+                        break;
+                }
             }
         });
     }
 
     private void openLstMais(View view){
-        Log.i(TAG, "openLstMais");
-
         final ListView lstMais = (ListView) view.findViewById(R.id.lstMais);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
@@ -116,7 +123,7 @@ public class PerfilFragment extends Fragment {
     }
 
     public void setUserCabecalho(View view){
-        SharedPreferences pref = getActivity().getSharedPreferences("HomeHelpPref", Context.MODE_PRIVATE);
+        pref = getActivity().getSharedPreferences("HomeHelpPref", Context.MODE_PRIVATE);
         String userNome = pref.getString("key_user_nome", "");
 
         TextView textUserPerfil = (TextView) view.findViewById(R.id.textUserPerfil);
@@ -124,7 +131,7 @@ public class PerfilFragment extends Fragment {
     }
 
     public void logon(){
-        SharedPreferences pref = getActivity().getSharedPreferences("HomeHelpPref", Context.MODE_PRIVATE);
+        pref = getActivity().getSharedPreferences("HomeHelpPref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.putString("key_user_id", null);
         editor.putString("key_user", null);

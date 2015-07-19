@@ -45,7 +45,7 @@
 
                 <ListView
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
+                    android:layout_height="110dp"
                     android:id="@+id/lstMeusDados" />
 
                 <TextView
@@ -57,7 +57,7 @@
 
                 <ListView
                     android:layout_width="match_parent"
-                    android:layout_height="130dp"
+                    android:layout_height="110dp"
                     android:id="@+id/lstMais"
                     android:layout_weight="0.38" />
 

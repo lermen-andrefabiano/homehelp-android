@@ -12,6 +12,8 @@ public class LoginDTO {
 
 	private String senha;
 
+	private String endereco;
+
 	private String confirmaSenha;
 
 	private Boolean prestaServico;
@@ -54,6 +56,14 @@ public class LoginDTO {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
 
 	public String getConfirmaSenha() {

@@ -50,6 +50,9 @@
     <string name="label_criar_conta">Criar minha conta Home Help</string>
     <string name="label_ja_sou_cadastrado">Já sou cadastrado</string>
     <string name="label_valor_dinheiro">R$</string>
+    <string name="label_endereco">Endereço</string>
+    <string name="label_especialidade_listar">Visualizar</string>
+    <string name="label_especialidade_add">Adicionar</string>
 
     <string name="title_activity_perfil">Perfil</string>
     <string name="title_activity_meus_dados">Meus Dados</string>
@@ -57,6 +60,7 @@
     <string name="title_activity_lembrete_senha">Esqueci minha senha</string>
     <string name="title_activity_boas_vindas">Boas Vindas ao Home Help</string>
     <string name="title_activity_login">Login</string>
+    <string name="title_activity_meus_dados_especialidade">Especialidades</string>
 
     <string name="toast_chamado_descriao">Informe a descrição</string>
     <string name="toast_chamado_aberto">Chamado aberto!</string>
@@ -113,6 +117,7 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 
 
