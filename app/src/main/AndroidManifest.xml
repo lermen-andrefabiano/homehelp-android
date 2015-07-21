@@ -25,10 +25,10 @@
         <activity
             android:name=".MeusDadosActivity"
             android:label="@string/title_activity_meus_dados"
-            android:parentActivityName=".MeusDadosActivity" >
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MeusDadosActivity" />
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".RedefinirSenhaActivity"
