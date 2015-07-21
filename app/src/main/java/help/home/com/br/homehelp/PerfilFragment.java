@@ -137,6 +137,7 @@ public class PerfilFragment extends Fragment {
         editor.putString("key_user", null);
         editor.putString("key_user_email", null);
         editor.putString("key_user_nome", null);
+        editor.putString("key_user_endereco", null);
         editor.putString("key_user_prestador", null);
         editor.commit();
 

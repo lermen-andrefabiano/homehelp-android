@@ -37,12 +37,14 @@ public class EspecialidadeREST extends AbstractREST{
             try{
                 obj = parser.parse(resposta[1]).getAsJsonObject();
                 array = obj.getAsJsonArray("especialidades");
+
+                for (int i = 0; i < array.size(); i++) {
+                    lst.add(gson.fromJson(array.get(i), UsuarioEspecialidadeDTO.class));
+                }
+            }catch(ClassCastException c){
+                lst.add(gson.fromJson(obj.getAsJsonObject("especialidades"), UsuarioEspecialidadeDTO.class));
             }catch (Exception e){
                 e.printStackTrace();
-            }
-
-            for (int i = 0; i < array.size(); i++) {
-                lst.add(gson.fromJson(array.get(i), UsuarioEspecialidadeDTO.class));
             }
 
             return lst;
@@ -66,12 +68,14 @@ public class EspecialidadeREST extends AbstractREST{
             try{
                 obj = parser.parse(resposta[1]).getAsJsonObject();
                 array = obj.getAsJsonArray("especialidades");
+
+                for (int i = 0; i < array.size(); i++) {
+                    lst.add(gson.fromJson(array.get(i), UsuarioEspecialidadeDTO.class));
+                }
+            }catch(ClassCastException c){
+                lst.add(gson.fromJson(obj.getAsJsonObject("especialidades"), UsuarioEspecialidadeDTO.class));
             }catch (Exception e){
                 e.printStackTrace();
-            }
-
-            for (int i = 0; i < array.size(); i++) {
-                lst.add(gson.fromJson(array.get(i), UsuarioEspecialidadeDTO.class));
             }
 
             return lst;
