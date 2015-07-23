@@ -5,6 +5,6 @@ package help.home.com.br.homehelp.webservices.rest;
  */
 public abstract class AbstractREST {
 
-    protected static final String URL_WS = "http://10.0.0.104:8080/homehelp/rest/";
+    protected static final String URL_WS = "http://10.0.0.103:8080/homehelp/rest/";
 
 }

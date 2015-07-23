@@ -33,26 +33,26 @@
         <activity
             android:name=".RedefinirSenhaActivity"
             android:label="@string/title_activity_redefinir_senha"
-            android:parentActivityName=".MeusDadosActivity" >
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MeusDadosActivity" />
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".LembreteSenhaActivity"
             android:label="@string/title_activity_lembrete_senha"
-            android:parentActivityName=".MeusDadosActivity" >
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MeusDadosActivity" />
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".MeusDadosEspecialidadeActivity"
             android:label="@string/title_activity_meus_dados_especialidade"
-            android:parentActivityName=".MeusDadosActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MeusDadosActivity" />
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".BoasVindasActivity"
